@@ -1,30 +1,48 @@
-import {useState} from 'react'
-import './App.css'
+import Text from './Text';
 
 function App() {
-  const [count, setCount] = useState(50);
 
-  const handleButtonClick = () => {
-    console.log({count});
-    setCount(count + 1);
-  }
+  console.log('Hello from APP');
 
   return (
-    <>
-      <div className="card">
-        <button onClick={handleButtonClick} className="button">
-          count is {count}
-        </button>
-      </div>
-      <Helper countValue={count} name={"Harpal"} />
-    </>
+   <div>
+     <Text name={"Sanjay"} age={40} />
+     <h1>Hello</h1>
+   </div>
   )
 }
 
-const Helper = (props) => {
-  return (
-    <p>Helper - {props.countValue} - {props.name}</p>
-  )
-}
+export default App;
 
-export default App
+
+// export default function App() {
+//   return (
+//     <h1>Hello World!</h1>
+//   )
+// }
+
+
+// const App = () => {
+//   return (
+//     <h1>Hello World! From</h1>
+//   )
+// }
+//
+// export default App;
+
+
+// import {Component} from "react";
+//
+// class App extends Component {
+//   constructor() {
+//     super();
+//   }
+//
+//   render() {
+//     return (
+//       <h1>Hello from class</h1>
+//     )
+//   }
+// }
+//
+// export default App;
