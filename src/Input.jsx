@@ -3,7 +3,7 @@
 
 import {Component} from "react";
 
-class Input extends Component {
+class TextInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class Input extends Component {
     this.state.value = "HELLO";
     return (
       <>
-        <h1>Hi Input {this.state.value} In {this.props.name}</h1>
+        <h1>Hi TextInput {this.state.value} In {this.props.name}</h1>
         <h3>{this.getValue()}</h3>
       </>
     )
