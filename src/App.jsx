@@ -3,6 +3,7 @@ import {faUser} from "@fortawesome/free-solid-svg-icons";
 
 import TextInput from "./Component/TextInput";
 import {Button} from "./Component/Button/index.jsx";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function App() {
   const [name, setName] = useState("");
@@ -28,7 +29,9 @@ function App() {
         icon={faUser}
         onChange={handleNameChange}/>
 
-      <Button>
+      <Button variant={"destructive"} onClick={handleNameChange}>
+        <FontAwesomeIcon icon={faUser} />
+        Login
       </Button>
     </div>
   )

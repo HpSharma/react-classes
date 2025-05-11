@@ -1,8 +1,11 @@
 import styles from './Style.module.scss';
 
 export const Button = (props) => {
-  const {varient = 'primary'} = props;
+  const {children, variant = 'primary'} = props;
+
+  const className = ["primary", "secondary", "destructive"].includes(variant) ? variant : "primary";
+
   return (
-    <button className={styles.btn}>Click Me!</button>
+    <button className={styles[className]}>{children}</button>
   )
 }
