@@ -4,6 +4,7 @@ import {faUser} from "@fortawesome/free-solid-svg-icons";
 import TextInput from "./Component/TextInput";
 import {Button} from "./Component/Button/index.jsx";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import SelectInput from "./Component/SelectInput/index.jsx";
 
 function App() {
   const [name, setName] = useState("");
@@ -33,6 +34,9 @@ function App() {
         <FontAwesomeIcon icon={faUser} />
         Login
       </Button>
+
+      <SelectInput />
+
     </div>
   )
 }
