@@ -1,18 +1,36 @@
 import styles from './Style.module.scss';
-import {useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
+
+const items = ["Jaipur", "Hanumangarh", "Bikaner", "Sikar"];
 
 const SelectInput = () => {
   const [open, setOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState();
+  const dropdownRef = useRef(null);
 
-  const items = ["Jaipur", "Hanumangarh", "Bikaner", "Sikar"];
+  console.log(dropdownRef.current);
+
+  useEffect(() => {
+    const handleOutsideClick = (event) => {
+      if (dropdownRef.current && dropdownRef.current.contains(event.target) === false) {
+        setOpen(false);
+      }
+    }
+
+    document.addEventListener("mouseup", handleOutsideClick);
+    return () => {
+      document.removeEventListener("mouseup", handleOutsideClick);
+    }
+  }, []);
 
   const handleItemSelect = (item) => {
     setSelectedItem(item);
     setOpen(false);
   }
+
+
 
   return (
     <div className={styles.container}>
@@ -22,7 +40,7 @@ const SelectInput = () => {
       </div>
       {
         open &&
-        <ul>
+        <ul ref={dropdownRef}>
           {
             items.map((item, index) => {
               return <li key={index} onClick={() => handleItemSelect(item)}>{item}</li>;

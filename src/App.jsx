@@ -1,5 +1,5 @@
 import {useState} from "react";
-import {faUser} from "@fortawesome/free-solid-svg-icons";
+import {faUser, faSpinner} from "@fortawesome/free-solid-svg-icons";
 
 import TextInput from "./Component/TextInput";
 import {Button} from "./Component/Button/index.jsx";
@@ -31,7 +31,7 @@ function App() {
         onChange={handleNameChange}/>
 
       <Button variant={"destructive"} onClick={handleNameChange}>
-        <FontAwesomeIcon icon={faUser} />
+        <FontAwesomeIcon icon={faSpinner} />
         Login
       </Button>
 
