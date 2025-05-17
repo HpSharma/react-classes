@@ -1,16 +1,14 @@
 import styles from './Style.module.scss';
 import {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faCaretDown, faCaretUp} from "@fortawesome/free-solid-svg-icons";
+import {faCaretDown, faCaretUp, faClose} from "@fortawesome/free-solid-svg-icons";
 
 const items = ["Jaipur", "Hanumangarh", "Bikaner", "Sikar"];
 
 const SelectInput = () => {
   const [open, setOpen] = useState(false);
-  const [selectedItem, setSelectedItem] = useState();
+  const [selectedItems, setSelectedItems] = useState([]);
   const dropdownRef = useRef(null);
-
-  console.log(dropdownRef.current);
 
   useEffect(() => {
     const handleOutsideClick = (event) => {
@@ -26,16 +24,29 @@ const SelectInput = () => {
   }, []);
 
   const handleItemSelect = (item) => {
-    setSelectedItem(item);
     setOpen(false);
+    let items = selectedItems;
+    if (items.includes(item)) return;
+
+    items.push(item);
+    setSelectedItems(items);
   }
 
-
+  const handleItemClose = (event, item) => {
+    event.stopPropagation();
+    setSelectedItems((prevState) => prevState.filter((i) => i !== item));
+  }
 
   return (
     <div className={styles.container}>
       <div className={styles.select} onClick={() => setOpen(!open)}>
-        <span>{selectedItem}</span>
+        <div className={styles.itemContainer}>
+          {selectedItems.map(((item, index) => {
+            return (
+              <span key={index} onClick={(event) => handleItemClose(event, item)}>{item} <FontAwesomeIcon icon={faClose}/></span>
+            )
+          }))}
+        </div>
         <FontAwesomeIcon icon={open ? faCaretUp : faCaretDown}/>
       </div>
       {
