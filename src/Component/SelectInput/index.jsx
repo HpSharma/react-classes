@@ -2,12 +2,16 @@ import styles from './Style.module.scss';
 import {useEffect, useRef, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp, faClose} from "@fortawesome/free-solid-svg-icons";
+import TextInput from "../TextInput/index.jsx";
 
-const items = ["Jaipur", "Hanumangarh", "Bikaner", "Sikar"];
+const defaultItems = ["Jaipur", "Hanumangarh", "Bikaner", "Sikar"];
 
 const SelectInput = () => {
   const [open, setOpen] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
+  const [items, setItems] = useState(defaultItems);
+
   const dropdownRef = useRef(null);
 
   useEffect(() => {
@@ -37,6 +41,16 @@ const SelectInput = () => {
     setSelectedItems((prevState) => prevState.filter((i) => i !== item));
   }
 
+  const handleSearchItems = (value) => {
+    if (value && value.trim().length === 0) {
+      setItems(defaultItems);
+      return;
+    }
+
+    setSearchInput(value);
+    setItems(defaultItems.filter((item) => item.toLowerCase().includes(value.toLowerCase())));
+  }
+
   return (
     <div className={styles.container}>
       <div className={styles.select} onClick={() => setOpen(!open)}>
@@ -52,8 +66,11 @@ const SelectInput = () => {
       {
         open &&
         <ul ref={dropdownRef}>
+          <li>
+            <TextInput value={searchInput} onChange={handleSearchItems}/>
+          </li>
           {
-            items.map((item, index) => {
+            items?.map((item, index) => {
               return <li key={index} onClick={() => handleItemSelect(item)}>{item}</li>;
             })
           }
