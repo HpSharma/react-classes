@@ -4,7 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCaretDown, faCaretUp, faClose} from "@fortawesome/free-solid-svg-icons";
 import TextInput from "../TextInput/index.jsx";
 
-const defaultItems = ["Jaipur", "Hanumangarh", "Bikaner", "Sikar"];
+const defaultItems = ["Jaipur", "Hanumangarh", "Bikaner", "Sikar", "Nohar", "Bhadra", "Hissar", "Sirsa", "Churu", "kota", "Jodhpur"];
 
 const SelectInput = () => {
   const [open, setOpen] = useState(false);

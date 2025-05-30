@@ -47,14 +47,22 @@
 
 
 ul {
+  max-height: 220px;
   list-style: none;
   padding: 10px 0;
+  padding-top: 0px;
   margin-top: 10px;
   border: 1px solid var(--border-light);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+  position: relative;
 
   li:first-of-type {
+    position: sticky;
+    top: 0;
     padding-bottom: 10px;
+    background: #fff;
+    padding-top: 10px;
 
     &:hover {
       background-color: #FFF;
